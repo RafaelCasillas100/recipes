@@ -1,0 +1,31 @@
+.tooltip {
+  position: absolute;
+  right: 10.5rem;
+  top: 4rem;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .text {
+  width: 120px;
+  background-color: rgb(0, 0, 0, 0.8);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  font-size: 0.9rem;
+
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip .text::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}

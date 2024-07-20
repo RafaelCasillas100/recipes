@@ -36,7 +36,7 @@ const PageTour = () => {
 
   const tryOnChange = (stepNumber) => {
     if (stepNumber === 1) setQueryParam(SEARCH_KEY, "carrot");
-    if (stepNumber === 2) setQueryParam(RECIPE_ID, "5ed6604591c37cdc054bca65");
+    if (stepNumber === 2) setQueryParam(RECIPE_ID, "664c8f193e7aa067e94e8462");
   };
 
   return (

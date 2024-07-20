@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/recipes/static/css/main.241b407d.css",
-    "main.js": "/recipes/static/js/main.727f6d45.js",
+    "main.js": "/recipes/static/js/main.e77e9d40.js",
     "static/media/forky.png": "/recipes/static/media/forky.a665a62652bd814f4696.png",
     "index.html": "/recipes/index.html",
     "main.241b407d.css.map": "/recipes/static/css/main.241b407d.css.map",
-    "main.727f6d45.js.map": "/recipes/static/js/main.727f6d45.js.map"
+    "main.e77e9d40.js.map": "/recipes/static/js/main.e77e9d40.js.map"
   },
   "entrypoints": [
     "static/css/main.241b407d.css",
-    "static/js/main.727f6d45.js"
+    "static/js/main.e77e9d40.js"
   ]
 }

@@ -1,0 +1,50 @@
+name: Auto Deploy to GitHub Pages
+
+env:
+  DEPLOY_STRATEGY: with_internal_action
+  # DEPLOY_STRATEGY: with_external_action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "20.x"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install GitHub Pages package
+        if: env.DEPLOY_STRATEGY == 'with_internal_action'
+        run: npm install gh-pages
+
+        # This step is not needed for with_internal_action because in the package.json file, the predeploy script creates the build.
+      - name: Build
+        if: env.DEPLOY_STRATEGY == 'with_external_action'
+        run: npm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        if: env.DEPLOY_STRATEGY == 'with_internal_action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided automatically by GitHub Actions
+        run: npm run deploy
+
+      - name: Deploy to GitHub Pages
+        if: env.DEPLOY_STRATEGY == 'with_external_action'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build

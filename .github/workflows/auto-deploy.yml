@@ -1,9 +1,5 @@
 name: Auto Deploy to GitHub Pages
 
-env:
-  DEPLOY_STRATEGY: internal_strategy
-  # DEPLOY_STRATEGY: external_strategy
-
 on:
   push:
     branches:
@@ -23,19 +19,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-        # This step is not needed for internal_strategy because in the package.json file, the predeploy script creates the build.
-      - name: Create Build for external strategy
-        if: env.DEPLOY_STRATEGY == 'external_strategy'
+      - name: Create Build
         run: npm run build
 
-      - name: Deploy to GitHub Pages using internal strategy
-        if: env.DEPLOY_STRATEGY == 'internal_strategy'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided automatically by GitHub Actions
-        run: npm run deploy
-
-      - name: Deploy to GitHub Pages using external strategy
-        if: env.DEPLOY_STRATEGY == 'external_strategy'
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
